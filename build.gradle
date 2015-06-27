@@ -1,0 +1,50 @@
+buildscript {
+	repositories {
+    	maven { url "http://repo1.maven.org/maven2"	}
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.4.RELEASE")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+version = '0.0.1-SNAPSHOT'
+
+jar {
+	baseName = 'spring-boot'
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                   'Implementation-Version': version
+    }
+    version = version
+}
+
+repositories {
+    maven { url "http://repo1.maven.org/maven2"	}
+}
+
+dependencies {
+	// spring boot
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.2.4.RELEASE'
+    
+    //apache commons
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2.1'
+    compile group: 'commons-lang', name: 'commons-lang', version: '2.3'
+    
+    // Log
+	compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.2'
+	compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.2'
+	compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.0.9'
+    
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.2.4.RELEASE'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+
+mainClassName = 'br.com.rbdutra.mars.rover.SampleController'

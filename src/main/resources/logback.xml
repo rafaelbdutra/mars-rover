@@ -1,0 +1,27 @@
+<configuration>
+
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%p] [${project.version}] [%t] [%d{dd/MM/yyyy HH:mm:ss.SSS}]
+				%C - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="fileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/export/logs/mars-rover/mars-rover.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>[%p] [${project.version}] [%t] [%d{dd/MM/yyyy HH:mm:ss.SSS}]
+				%C - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="br.com.rbdutra" level="INFO" />
+
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="consoleAppender" />
+		<appender-ref ref="fileAppender" />
+	</root>
+</configuration>
