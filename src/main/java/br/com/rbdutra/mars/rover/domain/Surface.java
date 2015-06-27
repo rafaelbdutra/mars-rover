@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Surface {
-	
+
 	private Logger logger = LoggerFactory.getLogger(Surface.class);
 
 	public static final Integer MIN_HEIGTH = Integer.valueOf(1);
@@ -31,8 +31,9 @@ public class Surface {
 
 	public Surface(Integer height, Integer width)
 			throws IllegalArgumentException {
-		
-		logger.info(String.format("Creating surface with height=%d, witdh=%d", height, width));
+
+		logger.info(String.format("Creating surface with height=%d, witdh=%d",
+				height, width));
 
 		if (!isValidCoordinates(height, width))
 			throw new IllegalArgumentException(String.format(
@@ -107,7 +108,7 @@ public class Surface {
 			return;
 
 		if (!isPositionFilled(rover.getPosition())) {
-		
+
 			this.rovers.add(rover);
 			rover.setSurface(this);
 		}
@@ -117,8 +118,11 @@ public class Surface {
 			throws IllegalArgumentException {
 
 		if (!isValidPositionInSurface(position))
-			throw new IllegalArgumentException(String.format(INVALID_POSITION_PARAMS_MSG, MIN_WIDTH, position.getX(), this.width, MIN_HEIGTH, position.getY(), this.height));
+			throw new IllegalArgumentException(String.format(
+					INVALID_POSITION_PARAMS_MSG, MIN_WIDTH, position.getX(),
+					this.width, MIN_HEIGTH, position.getY(), this.height));
 
-		return rovers.stream().anyMatch(r -> position.equals(r.getPosition()));
+		return rovers.stream().anyMatch(
+				rover -> position.equals(rover.getPosition()));
 	}
 }

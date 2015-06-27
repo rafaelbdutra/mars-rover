@@ -37,20 +37,36 @@ public class Position {
 		this.y = y;
 	}
 	
-	public void incrementX() {
-		this.x++;
+	public Position incrementX() {
+		
+		Position newPosition = new Position(this);
+		newPosition.setX(newPosition.getX() + 1);
+
+		return newPosition;
 	}
 	
-	public void incrementY() {
-		this.y++;
+	public Position incrementY() {
+
+		Position newPosition = new Position(this);
+		newPosition.setY(newPosition.getY() + 1);
+
+		return newPosition;
 	}
 	
-	public void decrementX() {
-		this.x--;
+	public Position decrementX() {
+		
+		Position newPosition = new Position(this);
+		newPosition.setX(newPosition.getX() - 1);
+
+		return newPosition;
 	}
 	
-	public void decrementY() {
-		this.y--;
+	public Position decrementY() {
+		
+		Position newPosition = new Position(this);
+		newPosition.setY(newPosition.getY() - 1);
+
+		return newPosition;
 	}
 
 	@Override

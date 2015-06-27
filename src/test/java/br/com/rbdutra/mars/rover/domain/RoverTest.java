@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import exception.RoverNotInSurfaceException;
 import br.com.rbdutra.mars.rover.domain.Rover.FaceDirection;
 
 public class RoverTest {
@@ -94,6 +95,13 @@ public class RoverTest {
 				centralizedFaceToNorthRover.getFaceDirection());
 		Assert.assertEquals(FaceDirection.E,
 				centralizedFaceToWestRover.getFaceDirection());
+	}
+	
+	@Test(expected = RoverNotInSurfaceException.class)
+	public void testNotInSurface() {
+		
+		centralizedFaceToNorthRover.setSurface(null);
+		centralizedFaceToNorthRover.applyCommand(Command.M);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
