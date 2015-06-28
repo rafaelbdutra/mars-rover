@@ -7,6 +7,8 @@ import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import br.com.rbdutra.mars.rover.exception.IllegalSurfaceParameterException;
+
 public class Surface {
 
 	private Logger logger = LoggerFactory.getLogger(Surface.class);
@@ -16,9 +18,6 @@ public class Surface {
 	public static final Integer MAX_HEIGTH = Integer.valueOf(50);
 	public static final Integer MAX_WIDTH = Integer.valueOf(50);
 
-	private static final String INVALID_SURFACE_PARAMS_MSG = "Illegal surface parameters."
-			+ " Must be: %d <= height <= %d and %d <= width <= %d."
-			+ " Actual height=%d, width=%d";
 	private static final String INVALID_POSITION_PARAMS_MSG = "Illegal position parameters."
 			+ " Must be: %d <= X <= %d and %d <= Y <= %d."
 			+ " Actual X=%d, Y=%d";
@@ -36,9 +35,7 @@ public class Surface {
 				height, width));
 
 		if (!isValidCoordinates(height, width))
-			throw new IllegalArgumentException(String.format(
-					INVALID_SURFACE_PARAMS_MSG, MIN_HEIGTH, MAX_HEIGTH,
-					MIN_WIDTH, MAX_WIDTH, height, width));
+			throw new IllegalSurfaceParameterException(height, width);
 
 		this.height = height;
 		this.width = width;

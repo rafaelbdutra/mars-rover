@@ -1,4 +1,4 @@
-package exception;
+package br.com.rbdutra.mars.rover.exception;
 
 public class RoverNotInSurfaceException extends RuntimeException {
 

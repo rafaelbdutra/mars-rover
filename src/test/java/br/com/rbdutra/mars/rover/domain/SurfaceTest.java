@@ -4,6 +4,8 @@ package br.com.rbdutra.mars.rover.domain;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.com.rbdutra.mars.rover.exception.IllegalSurfaceParameterException;
+
 public class SurfaceTest {
 	
 	private static final Integer INVALID_MIN_HEIGHT = Surface.MIN_HEIGTH - 1;
@@ -18,25 +20,25 @@ public class SurfaceTest {
 		Assert.assertNotNull(surface);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = IllegalSurfaceParameterException.class)
 	public void testInvalidMinHeight() {
 		
 		new Surface(INVALID_MIN_HEIGHT, Surface.MAX_WIDTH);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = IllegalSurfaceParameterException.class)
 	public void testInvalidMinWidth() {
 		
 		new Surface(Surface.MAX_HEIGTH, INVALID_MIN_WIDTH);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = IllegalSurfaceParameterException.class)
 	public void testInvalidMaxHeight() {
 		
 		new Surface(INVALID_MAX_HEIGHT, Surface.MAX_WIDTH);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = IllegalSurfaceParameterException.class)
 	public void testInvalidMaxWidth() {
 		
 		new Surface(Surface.MAX_HEIGTH, INVALID_MAX_WIDTH);

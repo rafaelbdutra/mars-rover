@@ -7,8 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import exception.RoverNotInSurfaceException;
 import br.com.rbdutra.mars.rover.domain.Rover.FaceDirection;
+import br.com.rbdutra.mars.rover.exception.RoverNotInSurfaceException;
 
 public class RoverTest {
 

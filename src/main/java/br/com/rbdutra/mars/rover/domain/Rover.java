@@ -2,7 +2,7 @@ package br.com.rbdutra.mars.rover.domain;
 
 import java.util.List;
 
-import exception.RoverNotInSurfaceException;
+import br.com.rbdutra.mars.rover.exception.RoverNotInSurfaceException;
 
 public class Rover {
 
