@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import br.com.rbdutra.mars.rover.exception.IllegalSurfaceParameterException;
+import br.com.rbdutra.mars.rover.exception.InvalidPositionException;
 
 public class Surface {
 
@@ -18,10 +19,6 @@ public class Surface {
 	public static final Integer MAX_HEIGTH = Integer.valueOf(50);
 	public static final Integer MAX_WIDTH = Integer.valueOf(50);
 
-	private static final String INVALID_POSITION_PARAMS_MSG = "Illegal position parameters."
-			+ " Must be: %d <= X <= %d and %d <= Y <= %d."
-			+ " Actual X=%d, Y=%d";
-
 	private Integer height;
 
 	private Integer width;
@@ -29,7 +26,7 @@ public class Surface {
 	private List<Rover> rovers;
 
 	public Surface(Integer height, Integer width)
-			throws IllegalArgumentException {
+			throws IllegalSurfaceParameterException {
 
 		logger.info(String.format("Creating surface with height=%d, witdh=%d",
 				height, width));
@@ -58,8 +55,7 @@ public class Surface {
 		this.width = width;
 	}
 
-	private Boolean isValidCoordinates(Integer height, Integer width)
-			throws IllegalArgumentException {
+	private Boolean isValidCoordinates(Integer height, Integer width) {
 
 		if (height == null || width == null)
 			return Boolean.FALSE;
@@ -90,7 +86,7 @@ public class Surface {
 		return rovers;
 	}
 
-	public void addRovers(List<Rover> rovers) throws IllegalArgumentException {
+	public void addRovers(List<Rover> rovers) throws InvalidPositionException {
 
 		if (CollectionUtils.isEmpty(rovers))
 			return;
@@ -99,7 +95,7 @@ public class Surface {
 			addRover(rover);
 	}
 
-	public void addRover(Rover rover) throws IllegalArgumentException {
+	public void addRover(Rover rover) throws InvalidPositionException {
 
 		if (rover == null)
 			return;
@@ -112,12 +108,11 @@ public class Surface {
 	}
 
 	public Boolean isPositionFilled(Position position)
-			throws IllegalArgumentException {
+			throws InvalidPositionException {
 
 		if (!isValidPositionInSurface(position))
-			throw new IllegalArgumentException(String.format(
-					INVALID_POSITION_PARAMS_MSG, MIN_WIDTH, position.getX(),
-					this.width, MIN_HEIGTH, position.getY(), this.height));
+			throw new InvalidPositionException(this.height, this.width,
+					position);
 
 		return rovers.stream().anyMatch(
 				rover -> position.equals(rover.getPosition()));

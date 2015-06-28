@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.rbdutra.mars.rover.domain.Rover.FaceDirection;
+import br.com.rbdutra.mars.rover.exception.InvalidPositionException;
 
 public class SurfaceAddingRoverTest {
 
@@ -38,7 +39,7 @@ public class SurfaceAddingRoverTest {
 		Assert.assertSame(validRover2, surface.getRovers().get(1));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = InvalidPositionException.class)
 	public void testAddInvalidPositionRovers() {
 
 		surface.addRovers(Arrays.asList(invalidRover1, invalidRover2));

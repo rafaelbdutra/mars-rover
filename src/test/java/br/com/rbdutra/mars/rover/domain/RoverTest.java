@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.rbdutra.mars.rover.domain.Rover.FaceDirection;
+import br.com.rbdutra.mars.rover.exception.InvalidPositionException;
 import br.com.rbdutra.mars.rover.exception.RoverNotInSurfaceException;
 
 public class RoverTest {
@@ -104,7 +105,7 @@ public class RoverTest {
 		centralizedFaceToNorthRover.applyCommand(Command.M);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = InvalidPositionException.class)
 	public void testOutOfSurface() {
 
 		List<Command> chainOfCommands = Arrays.asList(Command.M, Command.M,
