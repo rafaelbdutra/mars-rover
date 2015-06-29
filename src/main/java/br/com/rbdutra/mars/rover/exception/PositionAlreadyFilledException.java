@@ -1,0 +1,19 @@
+package br.com.rbdutra.mars.rover.exception;
+
+import br.com.rbdutra.mars.rover.domain.Position;
+import br.com.rbdutra.mars.rover.domain.Rover.FaceDirection;
+
+public class PositionAlreadyFilledException extends RuntimeException {
+
+	private static final long serialVersionUID = 1L;
+
+	private static final String POSITION_ALREADY_FILLED_MESSAGE = "Cannot move to %s. Position [%d, %d] contain another rover.";
+
+	public PositionAlreadyFilledException(FaceDirection faceDirection,
+			Position position) {
+
+		super(String.format(POSITION_ALREADY_FILLED_MESSAGE,
+				faceDirection.getDescription(), position.getX(),
+				position.getY()));
+	}
+}

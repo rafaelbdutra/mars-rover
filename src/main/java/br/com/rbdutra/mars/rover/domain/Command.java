@@ -3,23 +3,14 @@ package br.com.rbdutra.mars.rover.domain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import br.com.rbdutra.mars.rover.domain.Rover.FaceDirection;
+import br.com.rbdutra.mars.rover.exception.PositionAlreadyFilledException;
+
 public enum Command {
 
-	L("Turn Left"), R("Turn Rigth"), M("Move Forward");
+	L, R, M;
 
 	private Logger logger = LoggerFactory.getLogger(Command.class);
-
-	private String INVALID_MOVE_MESSAGE = "Cannot move to %s. Position contain another rover.";
-
-	private String description;
-
-	private Command(String description) {
-		this.description = description;
-	}
-
-	public String getDescription() {
-		return description;
-	}
 
 	public void execute(Rover rover) {
 
@@ -41,16 +32,17 @@ public enum Command {
 	private void move(Rover rover) {
 
 		Position newPosition = getPositioner(rover).get();
-		String directionName = rover.getFaceDirection().getDescription();
+		FaceDirection faceDirection = rover.getFaceDirection();
 
 		logger.info(String.format(
 				"Moving rover to %s. fromX=%d, toX=%d, fromY=%d, toY=%d",
-				directionName, rover.getPosition().getX(), newPosition.getX(),
-				rover.getPosition().getY(), newPosition.getY()));
+				faceDirection.getDescription(), rover.getPosition().getX(),
+				newPosition.getX(), rover.getPosition().getY(),
+				newPosition.getY()));
 
 		if (rover.getSurface().isPositionFilled(newPosition))
-			throw new IllegalArgumentException(String.format(
-					INVALID_MOVE_MESSAGE, directionName));
+			throw new PositionAlreadyFilledException(rover.getFaceDirection(),
+					newPosition);
 
 		rover.setPosition(newPosition);
 	}

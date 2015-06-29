@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import br.com.rbdutra.mars.rover.domain.Rover.FaceDirection;
 import br.com.rbdutra.mars.rover.exception.InvalidPositionException;
+import br.com.rbdutra.mars.rover.exception.PositionAlreadyFilledException;
 import br.com.rbdutra.mars.rover.exception.RoverNotInSurfaceException;
 
 public class RoverTest {
@@ -97,10 +98,10 @@ public class RoverTest {
 		Assert.assertEquals(FaceDirection.E,
 				centralizedFaceToWestRover.getFaceDirection());
 	}
-	
+
 	@Test(expected = RoverNotInSurfaceException.class)
 	public void testNotInSurface() {
-		
+
 		centralizedFaceToNorthRover.setSurface(null);
 		centralizedFaceToNorthRover.applyCommand(Command.M);
 	}
@@ -110,24 +111,27 @@ public class RoverTest {
 
 		List<Command> chainOfCommands = Arrays.asList(Command.M, Command.M,
 				Command.M, Command.M, Command.M);
-		
+
 		centralizedFaceToNorthRover.applyCommand(chainOfCommands);
-		
-		Assert.assertEquals(new Position(6, 10), centralizedFaceToNorthRover.getPosition());
-		
+
+		Assert.assertEquals(new Position(6, 10),
+				centralizedFaceToNorthRover.getPosition());
+
 		centralizedFaceToNorthRover.applyCommand(Command.M);
 	}
-	
-	@Test(expected = IllegalArgumentException.class)
+
+	@Test(expected = PositionAlreadyFilledException.class)
 	public void testColision() {
-		
+
 		List<Command> chainOfCommands = Arrays.asList(Command.M, Command.L);
-		
+
 		centralizedFaceToNorthRover.applyCommand(chainOfCommands);
-		
-		Assert.assertEquals(new Position(6, 6), centralizedFaceToNorthRover.getPosition());
-		Assert.assertEquals(FaceDirection.W, centralizedFaceToNorthRover.getFaceDirection());
-		
+
+		Assert.assertEquals(new Position(6, 6),
+				centralizedFaceToNorthRover.getPosition());
+		Assert.assertEquals(FaceDirection.W,
+				centralizedFaceToNorthRover.getFaceDirection());
+
 		centralizedFaceToNorthRover.applyCommand(Command.M);
 	}
 }

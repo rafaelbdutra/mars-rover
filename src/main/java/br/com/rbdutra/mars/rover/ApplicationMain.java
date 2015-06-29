@@ -49,7 +49,7 @@ public class ApplicationMain {
 
 			allRovers.add(rover);
 			
-			System.out.println(">>> Please, insert [S] to add another rover or anything else to stop");
+			System.out.print(">>> Please, insert [S] to add another rover or anything else to stop: ");
 			continueApp = parseInsertAnotherRoverInput(scanner.nextLine());
 		};
 
