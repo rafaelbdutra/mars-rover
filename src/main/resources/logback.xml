@@ -2,7 +2,7 @@
 
 	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>[%p] [${project.version}] [%t] [%d{dd/MM/yyyy HH:mm:ss.SSS}]
+			<pattern>[%p] [%t] [%d{dd/MM/yyyy HH:mm:ss.SSS}]
 				%C - %m%n</pattern>
 		</encoder>
 	</appender>
@@ -12,7 +12,7 @@
 		<file>/export/logs/mars-rover/mars-rover.log</file>
 		<append>true</append>
 		<encoder>
-			<pattern>[%p] [${project.version}] [%t] [%d{dd/MM/yyyy HH:mm:ss.SSS}]
+			<pattern>[%p] [%t] [%d{dd/MM/yyyy HH:mm:ss.SSS}]
 				%C - %m%n</pattern>
 		</encoder>
 	</appender>

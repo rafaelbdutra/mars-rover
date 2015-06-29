@@ -2,12 +2,14 @@ package br.com.rbdutra.mars.rover.domain;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import br.com.rbdutra.mars.rover.exception.RoverNotInSurfaceException;
 
 public class Rover {
 
-	// private static final Logger logger =
-	// LoggerFactory.getLogger(Rover.class);
+	private static final Logger logger = LoggerFactory.getLogger(Rover.class);
 
 	public enum FaceDirection {
 
@@ -37,11 +39,15 @@ public class Rover {
 		}
 
 		private FaceDirection getPrevious() {
+			
+			logger.info("Turning rover to left");
 			return 0 == this.ordinal() ? W : FaceDirection.values()[this
 					.ordinal() - 1];
 		}
 
 		private FaceDirection getNext() {
+			
+			logger.info("Turning rover to rigth");
 			return FaceDirection.values().length - 1 == this.ordinal() ? N
 					: FaceDirection.values()[this.ordinal() + 1];
 		}
@@ -105,4 +111,15 @@ public class Rover {
 
 		command.execute(this);
 	}
+
+	@Override
+	public String toString() {
+
+		return new StringBuilder() //
+				.append(position) //
+				.append(" ") //
+				.append(faceDirection.name()) //
+				.toString();
+	}
+
 }

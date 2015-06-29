@@ -10,11 +10,11 @@ public class IllegalSurfaceParameterException extends RuntimeException {
 			+ " Must be: %d <= height <= %d and %d <= width <= %d."
 			+ " Actual height=%d, width=%d";
 
-	public IllegalSurfaceParameterException(Integer heigth, Integer width) {
+	public IllegalSurfaceParameterException(Integer height, Integer width) {
 
-		super(String.format(ILLEGAL_SURFACE_PARAMS_MSG, Surface.MIN_HEIGTH,
-				Surface.MAX_HEIGTH, Surface.MIN_WIDTH, Surface.MAX_WIDTH,
-				heigth, width));
+		super(String.format(ILLEGAL_SURFACE_PARAMS_MSG, Surface.MIN_HEIGHT,
+				Surface.MAX_HEIGHT, Surface.MIN_WIDTH, Surface.MAX_WIDTH,
+				height, width));
 	}
 
 }

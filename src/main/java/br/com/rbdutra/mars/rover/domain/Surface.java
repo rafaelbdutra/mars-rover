@@ -14,9 +14,9 @@ public class Surface {
 
 	private Logger logger = LoggerFactory.getLogger(Surface.class);
 
-	public static final Integer MIN_HEIGTH = Integer.valueOf(1);
+	public static final Integer MIN_HEIGHT = Integer.valueOf(1);
 	public static final Integer MIN_WIDTH = Integer.valueOf(1);
-	public static final Integer MAX_HEIGTH = Integer.valueOf(50);
+	public static final Integer MAX_HEIGHT = Integer.valueOf(50);
 	public static final Integer MAX_WIDTH = Integer.valueOf(50);
 
 	private Integer height;
@@ -60,7 +60,7 @@ public class Surface {
 		if (height == null || width == null)
 			return Boolean.FALSE;
 
-		if (height >= MIN_HEIGTH && width >= MIN_WIDTH && height <= MAX_HEIGTH
+		if (height >= MIN_HEIGHT && width >= MIN_WIDTH && height <= MAX_HEIGHT
 				&& width <= MAX_WIDTH)
 			return Boolean.TRUE;
 
@@ -73,8 +73,8 @@ public class Surface {
 				|| position.getY() == null)
 			return Boolean.FALSE;
 
-		if (position.getX() >= MIN_WIDTH && position.getX() <= this.width
-				&& position.getY() >= MIN_HEIGTH
+		if (position.getX() >= MIN_WIDTH - 1 && position.getX() <= this.width
+				&& position.getY() >= MIN_HEIGHT - 1
 				&& position.getY() <= this.height)
 			return Boolean.TRUE;
 

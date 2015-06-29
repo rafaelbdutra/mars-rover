@@ -15,7 +15,7 @@ public class InvalidPositionException extends RuntimeException {
 			Integer surfaceWidth, Position position) {
 
 		super(String.format(INVALID_POSITION_PARAMS_MSG, Surface.MIN_WIDTH,
-				surfaceWidth, Surface.MIN_HEIGTH, surfaceHeight,
+				surfaceWidth, Surface.MIN_HEIGHT, surfaceHeight,
 				position.getX(), position.getY()));
 	}
 
