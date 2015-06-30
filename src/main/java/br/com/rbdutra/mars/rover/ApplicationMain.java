@@ -95,7 +95,7 @@ public class ApplicationMain {
 		if (StringUtils.isEmpty(surfaceInput)
 				|| !surfaceInputPattern.matcher(surfaceInput).matches())
 			throw new IllegalArgumentException(
-					"Surface input must follow the pattern: INT INT");
+					"Surface input must follow the pattern: INT(2) INT(2)");
 
 		Matcher matcher = surfaceInputPattern.matcher(surfaceInput);
 		matcher.find();
@@ -115,7 +115,7 @@ public class ApplicationMain {
 		if (StringUtils.isEmpty(roverInput)
 				|| !roverInputPattern.matcher(roverInput).matches())
 			throw new IllegalArgumentException(
-					"Rover input must follow the pattern: INT INT (N|S|W|E)");
+					"Rover input must follow the pattern: INT(2) INT(2) (N|S|W|E)");
 
 		Matcher matcher = roverInputPattern.matcher(roverInput);
 		matcher.find();
