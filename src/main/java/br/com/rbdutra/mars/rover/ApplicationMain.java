@@ -61,7 +61,7 @@ public class ApplicationMain {
 			commands = parseCommandsInput(scanner.nextLine());
 
 			surface.addRover(rover);
-			rover.applyCommand(commands);
+			rover.applyCommands(commands); // commands are running now
 
 			allRovers.add(rover);
 

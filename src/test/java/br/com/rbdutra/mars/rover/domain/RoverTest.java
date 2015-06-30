@@ -82,8 +82,8 @@ public class RoverTest {
 				Command.M, Command.R, Command.M, Command.R, Command.M,
 				Command.R, Command.M, Command.L);
 
-		centralizedFaceToNorthRover.applyCommand(chainOfCommands);
-		centralizedFaceToWestRover.applyCommand(chainOfCommands);
+		centralizedFaceToNorthRover.applyCommands(chainOfCommands);
+		centralizedFaceToWestRover.applyCommands(chainOfCommands);
 
 		Position expectedInitialFaceToNorthRover = new Position(6, 7);
 		Position expectedInitialFaceToWestRover = new Position(3, 6);
@@ -112,7 +112,7 @@ public class RoverTest {
 		List<Command> chainOfCommands = Arrays.asList(Command.M, Command.M,
 				Command.M, Command.M, Command.M);
 
-		centralizedFaceToNorthRover.applyCommand(chainOfCommands);
+		centralizedFaceToNorthRover.applyCommands(chainOfCommands);
 
 		Assert.assertEquals(new Position(6, 10),
 				centralizedFaceToNorthRover.getPosition());
@@ -125,7 +125,7 @@ public class RoverTest {
 
 		List<Command> chainOfCommands = Arrays.asList(Command.M, Command.L);
 
-		centralizedFaceToNorthRover.applyCommand(chainOfCommands);
+		centralizedFaceToNorthRover.applyCommands(chainOfCommands);
 
 		Assert.assertEquals(new Position(6, 6),
 				centralizedFaceToNorthRover.getPosition());
@@ -133,5 +133,22 @@ public class RoverTest {
 				centralizedFaceToNorthRover.getFaceDirection());
 
 		centralizedFaceToNorthRover.applyCommand(Command.M);
+	}
+
+	@Test
+	public void testNoCommandsPassed() {
+
+		Assert.assertEquals(new Position(6, 5),
+				centralizedFaceToNorthRover.getPosition());
+		Assert.assertEquals(FaceDirection.N,
+				centralizedFaceToNorthRover.getFaceDirection());
+		
+		centralizedFaceToNorthRover.applyCommands();
+		centralizedFaceToNorthRover.applyCommands(null);
+		
+		Assert.assertEquals(new Position(6, 5),
+				centralizedFaceToNorthRover.getPosition());
+		Assert.assertEquals(FaceDirection.N,
+				centralizedFaceToNorthRover.getFaceDirection());
 	}
 }

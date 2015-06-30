@@ -2,6 +2,7 @@ package br.com.rbdutra.mars.rover.domain;
 
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,6 +58,8 @@ public class Rover {
 
 	private Surface surface;
 
+	private List<Command> commands;
+
 	public Rover(Position initialPosition, FaceDirection initialFaceDirection) {
 
 		logger.info(String.format("Creating rover at [%s] faced to %s",
@@ -98,6 +101,14 @@ public class Rover {
 		this.surface = surface;
 	}
 
+	public List<Command> getCommands() {
+		return commands;
+	}
+
+	public void setCommands(List<Command> commands) {
+		this.commands = commands;
+	}
+
 	public void turnLeft() {
 
 		logger.info(String.format("Turning rover [%d] to left", this.id));
@@ -110,8 +121,18 @@ public class Rover {
 		this.faceDirection = faceDirection.getNext();
 	}
 
-	public void applyCommand(List<Command> commands)
+	public void applyCommands() throws RoverNotInSurfaceException {
+		this.applyCommands(this.commands);
+	}
+
+	public void applyCommands(List<Command> commands)
 			throws RoverNotInSurfaceException {
+
+		if (CollectionUtils.isEmpty(commands)) {
+			logger.warn(String.format(
+					"There is not command to apply to rover [%d]", this.id));
+			return;
+		}
 
 		for (Command command : commands)
 			applyCommand(command);
