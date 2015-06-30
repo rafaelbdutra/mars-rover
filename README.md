@@ -23,7 +23,7 @@
   
   + gradle run
   ou
-  + gradle build; java -jar build/libs/spring-boot-0.0.1-SNAPSHOT.jar
+  + gradle build; java -jar build/libs/mars-rover-0.0.1-SNAPSHOT.jar
 
 
 # Logs
