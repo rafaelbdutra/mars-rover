@@ -47,4 +47,9 @@ dependencies {
 }
 
 
-mainClassName = 'br.com.rbdutra.mars.rover.SampleController'
+//mainClassName = 'br.com.rbdutra.mars.rover.SampleController'
+mainClassName = 'br.com.rbdutra.mars.rover.ApplicationMain'
+
+run {
+	standardInput = System.in
+}

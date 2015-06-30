@@ -12,7 +12,7 @@ public enum Command {
 
 	private Logger logger = LoggerFactory.getLogger(Command.class);
 
-	public void execute(Rover rover) {
+	public void execute(Rover rover) throws PositionAlreadyFilledException {
 
 		switch (this) {
 		case L:
@@ -29,7 +29,7 @@ public enum Command {
 		}
 	}
 
-	private void move(Rover rover) {
+	private void move(Rover rover) throws PositionAlreadyFilledException {
 
 		Position newPosition = getPositioner(rover).get();
 		FaceDirection faceDirection = rover.getFaceDirection();

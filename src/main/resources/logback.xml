@@ -2,25 +2,29 @@
 
 	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>[%p] [%t] [%d{dd/MM/yyyy HH:mm:ss.SSS}]
-				%C - %m%n</pattern>
+			<pattern>[%p] [%t] [%d{dd/MM/yyyy HH:mm:ss.SSS}] %C - %m%n</pattern>
 		</encoder>
 	</appender>
 
 	<appender name="fileAppender"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>/export/logs/mars-rover/mars-rover.log</file>
+		
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/export/logs/mars-rover/mars-rover.log.%d
+			</fileNamePattern>
+		</rollingPolicy>
+		
+		<maxHistory>10</maxHistory>
 		<append>true</append>
+		
 		<encoder>
-			<pattern>[%p] [%t] [%d{dd/MM/yyyy HH:mm:ss.SSS}]
-				%C - %m%n</pattern>
+			<pattern>[%p] [%t] [%d{dd/MM/yyyy HH:mm:ss.SSS}] %C - %m%n</pattern>
 		</encoder>
 	</appender>
 
 	<logger name="br.com.rbdutra" level="INFO" />
 
-	<root>
-		<level value="INFO" />
+	<root level="INFO">
 		<appender-ref ref="consoleAppender" />
 		<appender-ref ref="fileAppender" />
 	</root>

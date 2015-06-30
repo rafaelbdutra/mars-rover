@@ -39,14 +39,14 @@ public class Rover {
 		}
 
 		private FaceDirection getPrevious() {
-			
+
 			logger.info("Turning rover to left");
 			return 0 == this.ordinal() ? W : FaceDirection.values()[this
 					.ordinal() - 1];
 		}
 
 		private FaceDirection getNext() {
-			
+
 			logger.info("Turning rover to rigth");
 			return FaceDirection.values().length - 1 == this.ordinal() ? N
 					: FaceDirection.values()[this.ordinal() + 1];
@@ -60,6 +60,9 @@ public class Rover {
 	private Surface surface;
 
 	public Rover(Position initialPosition, FaceDirection initialFaceDirection) {
+
+		logger.info(String.format("Creating rover at [%s] faced to %s",
+				initialPosition, initialFaceDirection.getDescription()));
 
 		this.position = initialPosition;
 		this.faceDirection = initialFaceDirection;

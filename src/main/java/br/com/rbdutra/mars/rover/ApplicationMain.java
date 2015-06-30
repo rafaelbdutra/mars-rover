@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import br.com.rbdutra.mars.rover.domain.Command;
 import br.com.rbdutra.mars.rover.domain.Position;
@@ -14,16 +16,30 @@ import br.com.rbdutra.mars.rover.domain.Rover;
 import br.com.rbdutra.mars.rover.domain.Rover.FaceDirection;
 import br.com.rbdutra.mars.rover.domain.Surface;
 import br.com.rbdutra.mars.rover.exception.IllegalSurfaceParameterException;
+import br.com.rbdutra.mars.rover.exception.InvalidPositionException;
+import br.com.rbdutra.mars.rover.exception.PositionAlreadyFilledException;
+import br.com.rbdutra.mars.rover.exception.RoverNotInSurfaceException;
 
 public class ApplicationMain {
+
+	static final Logger logger = LoggerFactory.getLogger(ApplicationMain.class);
 
 	public static void main(String[] args) {
 
 		ApplicationMain main = new ApplicationMain();
-		main.runApplication();
+
+		try {
+			main.runApplication();
+		} catch (IllegalSurfaceParameterException | InvalidPositionException
+				| PositionAlreadyFilledException | RoverNotInSurfaceException e) {
+			logger.error("Oops! Something went wrong!", e);
+		}
 	}
 
 	public void runApplication() {
+
+		logger.info("=== Welcome to the Mars Rover Project ===");
+		System.out.println("=== Welcome to the Mars Rover Project ===");
 
 		Scanner scanner = new Scanner(System.in);
 
@@ -48,21 +64,25 @@ public class ApplicationMain {
 			rover.applyCommand(commands);
 
 			allRovers.add(rover);
-			
-			System.out.print(">>> Please, insert [S] to add another rover or anything else to stop: ");
+
+			System.out
+					.print(">>> Please, insert [S] to add another rover or anything else to stop: ");
 			continueApp = parseInsertAnotherRoverInput(scanner.nextLine());
-		};
+		}
 
 		printRovers(allRovers);
-
 		scanner.close();
 	}
 
 	private void printRovers(List<Rover> allRovers) {
 
+		logger.info("=== ALL ROVERS ===");
 		System.out.println("=== ALL ROVERS ===");
-		for (Rover rover : allRovers)
+
+		for (Rover rover : allRovers) {
+			logger.info(String.format("Rover final position: %s", rover));
 			System.out.println(rover);
+		}
 	}
 
 	private Surface parseSurfaceInput(String surfaceInput)
