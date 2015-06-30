@@ -90,7 +90,7 @@ public class ApplicationMain {
 			throws IllegalArgumentException, IllegalSurfaceParameterException {
 
 		Pattern surfaceInputPattern = Pattern
-				.compile("^\\s*(\\d{0,3})\\s(\\d{0,3})\\s*$");
+				.compile("^\\s*(\\d{1,2})\\s(\\d{1,2})\\s*$");
 
 		if (StringUtils.isEmpty(surfaceInput)
 				|| !surfaceInputPattern.matcher(surfaceInput).matches())
@@ -110,7 +110,7 @@ public class ApplicationMain {
 			throws IllegalArgumentException {
 
 		Pattern roverInputPattern = Pattern
-				.compile("^\\s*(\\d{0,3})\\s(\\d{0,3})\\s(N|n|S|s|W|w|E|e)\\s*$");
+				.compile("^\\s*(\\d{1,2})\\s(\\d{1,2})\\s(N|n|S|s|W|w|E|e)\\s*$");
 
 		if (StringUtils.isEmpty(roverInput)
 				|| !roverInputPattern.matcher(roverInput).matches())
