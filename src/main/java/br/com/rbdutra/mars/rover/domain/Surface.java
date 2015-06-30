@@ -103,6 +103,8 @@ public class Surface {
 		if (!isPositionFilled(rover.getPosition())) {
 
 			this.rovers.add(rover);
+			
+			rover.setId(this.rovers.size());
 			rover.setSurface(this);
 		}
 	}

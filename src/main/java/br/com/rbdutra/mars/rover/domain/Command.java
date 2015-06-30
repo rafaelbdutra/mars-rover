@@ -35,14 +35,13 @@ public enum Command {
 		FaceDirection faceDirection = rover.getFaceDirection();
 
 		logger.info(String.format(
-				"Moving rover to %s. fromX=%d, toX=%d, fromY=%d, toY=%d",
-				faceDirection.getDescription(), rover.getPosition().getX(),
-				newPosition.getX(), rover.getPosition().getY(),
-				newPosition.getY()));
+				"Moving rover [%d] to %s. fromX=%d, toX=%d, fromY=%d, toY=%d",
+				rover.getId(), faceDirection.getDescription(), rover
+						.getPosition().getX(), newPosition.getX(), rover
+						.getPosition().getY(), newPosition.getY()));
 
 		if (rover.getSurface().isPositionFilled(newPosition))
-			throw new PositionAlreadyFilledException(rover.getFaceDirection(),
-					newPosition);
+			throw new PositionAlreadyFilledException(rover, newPosition);
 
 		rover.setPosition(newPosition);
 	}

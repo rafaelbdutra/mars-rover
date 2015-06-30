@@ -39,19 +39,17 @@ public class Rover {
 		}
 
 		private FaceDirection getPrevious() {
-
-			logger.info("Turning rover to left");
 			return 0 == this.ordinal() ? W : FaceDirection.values()[this
 					.ordinal() - 1];
 		}
 
 		private FaceDirection getNext() {
-
-			logger.info("Turning rover to rigth");
 			return FaceDirection.values().length - 1 == this.ordinal() ? N
 					: FaceDirection.values()[this.ordinal() + 1];
 		}
 	}
+
+	private Integer id;
 
 	private Position position;
 
@@ -66,6 +64,14 @@ public class Rover {
 
 		this.position = initialPosition;
 		this.faceDirection = initialFaceDirection;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Position getPosition() {
@@ -93,10 +99,14 @@ public class Rover {
 	}
 
 	public void turnLeft() {
+
+		logger.info(String.format("Turning rover [%d] to left", this.id));
 		this.faceDirection = faceDirection.getPrevious();
 	}
 
 	public void turnRigth() {
+
+		logger.info(String.format("Turning rover [%d] to rigth", this.id));
 		this.faceDirection = faceDirection.getNext();
 	}
 

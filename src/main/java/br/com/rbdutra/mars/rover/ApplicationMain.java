@@ -80,7 +80,8 @@ public class ApplicationMain {
 		System.out.println("=== ALL ROVERS ===");
 
 		for (Rover rover : allRovers) {
-			logger.info(String.format("Rover final position: %s", rover));
+			logger.info(String.format("Rover [%d] final position: %s",
+					rover.getId(), rover));
 			System.out.println(rover);
 		}
 	}
