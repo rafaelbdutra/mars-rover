@@ -1,7 +1,7 @@
-# mars-rover
+# Projeto Mars-Rover
 
-Regras estabelecidas:
 
+# Regras estabelecidas:
   + a classe ApplicationMain é o ponto de partida para a execução da aplicação;
   + o tamanho mínimo para largura e altura de um planalto (Surface) é de 1 para ambas as medidas;
   + o tamanho máximo para largura e altura de um planalto (Surface) é de 50 para ambas as medidas;
@@ -11,3 +11,21 @@ Regras estabelecidas:
   + a entrada de valores para os comandos deve conter qualquer quantidade de valores pré-definidos (L,R,M);
   + qualquer entrada inválida (que não siga as regras acima) acarretará na finalização da aplicação;
   + qualquer erro esperado (sonda fora do planalto, tamanho indevido de planalto, etc) acarretará na finalização da aplicação;
+
+
+# Dependências
+  + Java 8
+  + Gradle 2.4
+
+  
+# Execução
+  Na pasta do projeto:
+  
+  + gradle run
+  ou
+  + gradle build; java -jar build/libs/spring-boot-0.0.1-SNAPSHOT.jar
+
+
+# Logs
+
+  + tail -f /export/logs/mars-rover/mars-rover.log.{now}
