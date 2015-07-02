@@ -8,6 +8,11 @@ import org.slf4j.LoggerFactory;
 
 import br.com.rbdutra.mars.rover.exception.RoverNotInSurfaceException;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize
 public class Rover {
 
 	private static final Logger logger = LoggerFactory.getLogger(Rover.class);
@@ -57,10 +62,12 @@ public class Rover {
 	private FaceDirection faceDirection;
 
 	private Surface surface;
-
+	
 	private List<Command> commands;
 
-	public Rover(Position initialPosition, FaceDirection initialFaceDirection) {
+	@JsonCreator
+	public Rover(@JsonProperty("position") Position initialPosition,
+			@JsonProperty("faceDirection") FaceDirection initialFaceDirection) {
 
 		logger.info(String.format("Creating rover at [%s] faced to %s",
 				initialPosition, initialFaceDirection.getDescription()));
@@ -100,7 +107,7 @@ public class Rover {
 	public void setSurface(Surface surface) {
 		this.surface = surface;
 	}
-
+	
 	public List<Command> getCommands() {
 		return commands;
 	}
@@ -125,7 +132,7 @@ public class Rover {
 		this.applyCommands(this.commands);
 	}
 
-	public void applyCommands(List<Command> commands)
+	public void applyCommands(@JsonProperty("commands") List<Command> commands)
 			throws RoverNotInSurfaceException {
 
 		if (CollectionUtils.isEmpty(commands)) {

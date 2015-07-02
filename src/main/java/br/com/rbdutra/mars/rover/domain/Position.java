@@ -3,13 +3,19 @@ package br.com.rbdutra.mars.rover.domain;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize
 public class Position {
 
 	private Integer x;
 
 	private Integer y;
 
-	public Position(Integer x, Integer y) {
+	@JsonCreator
+	public Position(@JsonProperty("x") Integer x, @JsonProperty("y") Integer y) {
 
 		this.x = x;
 		this.y = y;
@@ -82,8 +88,7 @@ public class Position {
 	@Override
 	public String toString() {
 		return new StringBuilder() //
-				.append(x)
-				.append(" ") //
+				.append(x).append(" ") //
 				.append(y) //
 				.toString();
 	}

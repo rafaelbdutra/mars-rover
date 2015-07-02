@@ -1,6 +1,7 @@
 package br.com.rbdutra.mars.rover;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -60,7 +61,7 @@ public class ApplicationMain {
 			System.out.print(">>> Please, insert the rover commands: ");
 			commands = parseCommandsInput(scanner.nextLine());
 
-			surface.addRover(rover);
+			surface.addRovers(Arrays.asList(rover));
 			rover.applyCommands(commands); // commands are running now
 
 			allRovers.add(rover);

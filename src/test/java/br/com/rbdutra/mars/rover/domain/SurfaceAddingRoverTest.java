@@ -48,17 +48,17 @@ public class SurfaceAddingRoverTest {
 	@Test
 	public void testAddSamePositionRovers() {
 		
-		surface.addRover(samePositionRover1);
+		surface.addRovers(Arrays.asList(samePositionRover1));
 		Assert.assertSame(samePositionRover1, surface.getRovers().get(0));
 		
-		surface.addRover(samePositionRover2);
+		surface.addRovers(Arrays.asList(samePositionRover2));
 		Assert.assertTrue(surface.getRovers().size() == 1);
 	}
 	
 	@Test
 	public void testAddNullRover() {
 		
-		surface.addRover(null);
+		surface.addRovers(null);
 		Assert.assertTrue(surface.getRovers().isEmpty());
 	}
 }

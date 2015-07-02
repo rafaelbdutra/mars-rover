@@ -10,6 +10,11 @@ import org.slf4j.LoggerFactory;
 import br.com.rbdutra.mars.rover.exception.IllegalSurfaceParameterException;
 import br.com.rbdutra.mars.rover.exception.InvalidPositionException;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize
 public class Surface {
 
 	private Logger logger = LoggerFactory.getLogger(Surface.class);
@@ -23,9 +28,11 @@ public class Surface {
 
 	private Integer width;
 
+	@JsonIgnore
 	private List<Rover> rovers;
 
-	public Surface(Integer height, Integer width)
+	public Surface(@JsonProperty("height") Integer height,
+			@JsonProperty("width") Integer width)
 			throws IllegalSurfaceParameterException {
 
 		logger.info(String.format("Creating surface with height=%d, witdh=%d",
@@ -36,7 +43,7 @@ public class Surface {
 
 		this.height = height;
 		this.width = width;
-		this.rovers = new ArrayList<Rover>();
+		this.rovers = new ArrayList<>();
 	}
 
 	public Integer getHeight() {
@@ -95,7 +102,7 @@ public class Surface {
 			addRover(rover);
 	}
 
-	public void addRover(Rover rover) throws InvalidPositionException {
+	private void addRover(Rover rover) throws InvalidPositionException {
 
 		if (rover == null)
 			return;
@@ -103,7 +110,7 @@ public class Surface {
 		if (!isPositionFilled(rover.getPosition())) {
 
 			this.rovers.add(rover);
-			
+
 			rover.setId(this.rovers.size());
 			rover.setSurface(this);
 		}
